@@ -8,8 +8,6 @@ services:
         links:
             - suma
             - resta
-            - multiplicacion
-            - division
         ports:
             - "8080:80"
         
@@ -19,8 +17,5 @@ services:
     resta:
         build: ./resta
 
-    multiplicacion:
-        build: ./multiplicacion
-
-    division:
-        build: ./division
+    data:
+        build: ./data
