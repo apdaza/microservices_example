@@ -8,7 +8,6 @@ app.config['SECRET_KEY'] = "123"
 
 db = SQLAlchemy(app)
 
-
 class producto(db.Model):
 
     id  = db.Column("product_id", db.Integer, primary_key=True)
@@ -37,8 +36,10 @@ def principal():
 
 
 @app.route("/data/agregar/<nombre>/<int:cantidad>/<int:valor>")
-def agregar(nombre, cantidad, valor):
-    datos = {"nombre": nombre,
+##@app.route("/data/agregar", methods=[POST])
+def agregar(nombre, cantidad, valor): 
+##body
+    datos = {"nombre": nombre, ##body["valor"]
              "cantidad": cantidad,
              "valor": valor
             }
@@ -53,7 +54,7 @@ def eliminar(id):
     p = producto.query.filter_by(id=id).first()
     db.session.delete(p)
     db.session.commit()
-    return redirect(url_for('principal'))
+    return redirect("http://localhost:8080/data")
 
 
 @app.route("/data/actualizar/<int:id>/<nombre>/<int:cantidad>/<int:valor>")
