@@ -33,7 +33,7 @@ def principal():
              "valor": d.producto_valor
             }
         diccionario_productos[d.id] = p
-    return diccionario_productos
+    return str(diccionario_productos)
 
 
 @app.route("/data/agregar/<nombre>/<int:cantidad>/<int:valor>")
@@ -63,7 +63,7 @@ def actualizar(id, nombre, cantidad, valor):
     p.producto_cantidad = cantidad
     p.producto_valor = valor
     db.session.commit()
-    return redirect(url_for('principal'))
+    return redirect("http://localhost:8080/data")
 
 
 @app.route("/data/buscar/<int:id>")
