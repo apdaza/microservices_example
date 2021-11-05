@@ -9,6 +9,13 @@
 - Brayan Leonardo Sierra
 - Ivan Daniel Villegas
 
+## Tecnologías
+
+    Flask
+    Python
+    Sqlite
+    Docker
+
 ## Instrucciones
 
 Ejecutar:
