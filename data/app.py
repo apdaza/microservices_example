@@ -1,81 +1,67 @@
-from flask import Flask, url_for, redirect
+from flask import Flask, url_for, redirect, request
 from flask.helpers import url_for
 from flask_sqlalchemy import SQLAlchemy
+from models import Producto
+import db_crud
+import json
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///productos.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///producto.db'
 app.config['SECRET_KEY'] = "123"
-
 db = SQLAlchemy(app)
 
 
-class producto(db.Model):
-
-    id  = db.Column("product_id", db.Integer, primary_key=True)
-    producto_nombre = db.Column(db.String(100))
-    producto_valor = db.Column(db.Integer)
-    producto_cantidad = db.Column(db.Integer)
-
-    def __init__(self, datos):
-        self.producto_nombre = datos["nombre"]
-        self.producto_cantidad = datos["cantidad"]
-        self.producto_valor = datos["valor"]
-
-
-@app.route("/data")
+@app.route("/data", methods=['GET'])
 def principal():
-    data = producto.query.all()
-    diccionario_productos = {}
+    data = db_crud.get_all(Producto)
+    diccionario_productos = []
     for d in data:
-        p = {"id": d.id,
-             "nombre": d.producto_nombre,
-             "cantidad": d.producto_cantidad,
-             "valor": d.producto_valor
-            }
-        diccionario_productos[d.id] = p
-    return str(diccionario_productos)
+        p = {
+            "id": d.id,
+            "nombre": d.producto_nombre,
+            "cantidad": d.producto_cantidad,
+            "valor": d.producto_valor,
+            "descripcion": d.producto_descripcion
+        }
+        diccionario_productos.append(p)
+    return json.dumps(diccionario_productos), 200
+
+@app.route("/data/agregar", methods=['POST'])
+def agregar(): 
+    data = json.loads(request.data)
+    datos = {
+        "nombre": data["nombre"],
+        "descripcion": data["descripcion"],
+        "cantidad": data["cantidad"],
+        "valor": data["valor"]
+    }
+    db_crud.add_instance(Producto, datos)
+    return json.dumps("Elemento Agregado "+str(datos)), 200
 
 
-@app.route("/data/agregar/<nombre>/<int:cantidad>/<int:valor>")
-def agregar(nombre, cantidad, valor):
-    datos = {"nombre": nombre,
-             "cantidad": cantidad,
-             "valor": valor
-            }
-    p = producto(datos)
-    db.session.add(p)
-    db.session.commit()
-    return str(datos)
-
-
-@app.route("/data/eliminar/<int:id>")
+@app.route("/data/eliminar/<int:id>", methods=['DELETE'])
 def eliminar(id):
-    p = producto.query.filter_by(id=id).first()
-    db.session.delete(p)
-    db.session.commit()
-    return redirect(url_for('principal'))
+    db_crud.delete_instance(Producto, id)
+    return json.dumps("Elemento Eliminado "+str(id)), 200
 
+@app.route("/data/actualizar/<int:id>", methods=['PATCH'])
+def actualizar(id):
+    data = json.loads(request.data)
+    db_crud.edit_instance(Producto, id, data)
+    return json.dumps("Elemento Editado "+str(id)), 200
 
-@app.route("/data/actualizar/<int:id>/<nombre>/<int:cantidad>/<int:valor>")
-def actualizar(id, nombre, cantidad, valor):
-    p = producto.query.filter_by(id=id).first()
-    p.producto_nombre = nombre
-    p.producto_cantidad = cantidad
-    p.producto_valor = valor
-    db.session.commit()
-    return redirect("http://localhost:8080/data")
-
-
-@app.route("/data/buscar/<int:id>")
+@app.route("/data/buscar/<int:id>", methods=['GET'])
 def buscar(id):
-    d = producto.query.filter_by(id=id).first()
-    p = {"id": d.id,
-         "nombre": d.producto_nombre,
-         "cantidad": d.producto_cantidad,
-         "valor": d.producto_valor
-         }
+    data = db_crud.get_by_id(Producto, id)
+    p = {
+        "id": data.id,
+        "nombre": data.producto_nombre,
+        "cantidad": data.producto_cantidad,
+        "valor": data.producto_valor,
+        "descripcion": data.producto_descripcion
+    }
 
-    return str(p)
+    return json.dumps(p), 200
 
 
 if __name__ == "__main__":
