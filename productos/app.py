@@ -1,5 +1,4 @@
 from flask import Flask, url_for, redirect, request
-from flask.helpers import url_for
 from flask_sqlalchemy import SQLAlchemy
 from models import Producto
 import db_crud
@@ -11,7 +10,7 @@ app.config['SECRET_KEY'] = "123"
 db = SQLAlchemy(app)
 
 
-@app.route("/data", methods=['GET'])
+@app.route("/productos", methods=['GET'])
 def principal():
     data = db_crud.get_all(Producto)
     diccionario_productos = []
@@ -26,7 +25,7 @@ def principal():
         diccionario_productos.append(p)
     return json.dumps(diccionario_productos), 200
 
-@app.route("/data/agregar", methods=['POST'])
+@app.route("/productos/agregar", methods=['POST'])
 def agregar(): 
     data = json.loads(request.data)
     datos = {
@@ -39,18 +38,18 @@ def agregar():
     return json.dumps("Elemento Agregado "+str(datos)), 200
 
 
-@app.route("/data/eliminar/<int:id>", methods=['DELETE'])
+@app.route("/productos/eliminar/<int:id>", methods=['DELETE'])
 def eliminar(id):
     db_crud.delete_instance(Producto, id)
     return json.dumps("Elemento Eliminado "+str(id)), 200
 
-@app.route("/data/actualizar/<int:id>", methods=['PATCH'])
+@app.route("/productos/actualizar/<int:id>", methods=['PATCH'])
 def actualizar(id):
     data = json.loads(request.data)
     db_crud.edit_instance(Producto, id, data)
     return json.dumps("Elemento Editado "+str(id)), 200
 
-@app.route("/data/buscar/<int:id>", methods=['GET'])
+@app.route("/productos/buscar/<int:id>", methods=['GET'])
 def buscar(id):
     data = db_crud.get_by_id(Producto, id)
     p = {

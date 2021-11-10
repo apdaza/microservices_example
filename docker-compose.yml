@@ -6,16 +6,17 @@ services:
             - ./nginx.conf:/etc/nginx/nginx.conf:ro
         command: [nginx-debug, '-g', 'daemon off;']
         links:
-            - suma
+            - clientes
+            - productos
             - resta
         ports:
             - "8080:80"
         
-    suma:
-        build: ./suma
+    clientes:
+        build: ./clientes
+
+    productos:
+        build: ./productos
 
     resta:
         build: ./resta
-
-    data:
-        build: ./data
