@@ -9,6 +9,7 @@ services:
             - clientes
             - productos
             - resta
+            - apicrud
         ports:
             - "8080:80"
         
@@ -20,3 +21,6 @@ services:
 
     resta:
         build: ./resta
+
+    apicrud:
+        build: ./apicrud

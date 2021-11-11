@@ -18,7 +18,7 @@ def delete_instance(model, id):
 
 # PATCH
 def edit_instance(model, id, datos):
-    # Mejorar funcionalidad
+    # Mejorar funcionalidad OJOOOOOO
     instance = model.query.filter_by(id=id).all()[0]
     instance.producto_nombre = datos["nombre"]
     instance.producto_descripcion = datos["descripcion"]
