@@ -7,7 +7,9 @@ services:
         command: [nginx-debug, '-g', 'daemon off;']
         links:
             - clientes
+            - carrito
             - productos
+            - cantidad
             - resta
             - apicrud
         ports:
@@ -21,6 +23,12 @@ services:
 
     resta:
         build: ./resta
+    
+    carrito:
+        build: ./carrito
+    
+    cantidad:
+        build: ./cantidad    
 
     apicrud:
         build: ./apicrud
