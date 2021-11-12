@@ -21,6 +21,16 @@ def agregar():
     response = requests.post(BASE_URL + "/" + ENDPOINT, proxies={"http": "http://apicrud:5000/apicrud"}, data=json.dumps(data))
     return Response(response.content, response.status_code)
 
+@app.route("/clientes/eliminar/<int:id>", methods=['DELETE'])
+def eliminar(id):
+    response = requests.delete(BASE_URL + "/" + ENDPOINT + "/" +str(id), proxies={"http": "http://apicrud:5000/apicrud"})
+    return Response(response.content, response.status_code)
+
+@app.route("/clientes/actualizar/<int:id>", methods=['PATCH'])
+def actualizar(id):
+    data = json.loads(request.data)
+    response = requests.patch(BASE_URL + "/" + ENDPOINT + "/" +str(id), proxies={"http": "http://apicrud:5000/apicrud"}, data=json.dumps(data))
+    return Response(response.content, response.status_code)
 
 # @app.route("/clientes", methods=['GET'])
 # def principal():
@@ -46,12 +56,6 @@ def agregar():
 #     }
 #     db_crud.add_instance(Cliente, datos)
 #     return json.dumps("Elemento Agregado "+str(datos)), 200
-
-
-# @app.route("/clientes/eliminar/<int:id>", methods=['DELETE'])
-# def eliminar(id):
-#     db_crud.delete_instance(Cliente, id)
-#     return json.dumps("Elemento Eliminado "+str(id)), 200
 
 # @app.route("/clientes/actualizar/<int:id>", methods=['PATCH'])
 # def actualizar(id):

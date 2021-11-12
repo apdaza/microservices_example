@@ -4,7 +4,6 @@ import controller
 import json
 from serialisers import *
 
-
 @app.route("/apicrud/<tipo>", methods=['GET'])
 def get_method(tipo):
     if tipo == 'productos':
@@ -28,7 +27,6 @@ def get_method(tipo):
                 CantidadSerialiser.serialise(dato)
                 for dato in data])
 
-    ## REPLICAR PARA ORDENES
     return datos, 200
 
 @app.route("/apicrud/<tipo>", methods=['POST'])
@@ -42,17 +40,20 @@ def post_method(tipo):
         tipoModel = Carrito
     if tipo == 'cantidad':
         tipoModel = Cantidad
-    ## REPLICAR PARA CLIENTES, ORDENES
+
     controller.add_instance(tipoModel, datos)
     return json.dumps("Elemento Agregado "+str(datos)), 200
 
-
-@app.route("/data/eliminar/<int:id>", methods=['DELETE'])
-def eliminar(id):
-    controller.delete_instance(Producto, id)
+@app.route("/apicrud/<tipo>/<id>", methods=['DELETE'])
+def eliminar(tipo, id):
+    if tipo == 'productos':
+        tipoModel = Producto
+    if tipo == 'clientes':
+        tipoModel = Cliente
+    controller.delete_instance(tipoModel, id)
     return json.dumps("Elemento Eliminado "+str(id)), 200
 
-@app.route("/data/actualizar/<tipo>/<int:id>", methods=['PATCH'])
+@app.route("/apicrud/<tipo>/<int:id>", methods=['PATCH'])
 def actualizar(tipo, id):
     datos = json.loads(request.data)
     if tipo == 'productos':
@@ -63,10 +64,10 @@ def actualizar(tipo, id):
         controller.edit_instance_CART(Carrito, id, datos)
     if tipo == 'cantidad':
         controller.edit_instance_QUANTITY(Cantidad, id, datos)
-    ## REPLICAR PARA CLIENTES, ORDENES
+    
     return json.dumps("Elemento Editado "+str(id)), 200
 
-@app.route("/data/buscar/<int:id>", methods=['GET'])
+@app.route("/apicrud/<tipo>/<int:id>", methods=['GET'])
 def buscar(id):
     data = controller.get_by_id(Producto, id)
     p = {
