@@ -18,6 +18,17 @@ CREATE TABLE producto (
 	PRIMARY KEY (product_id)
 );
 
+CREATE TABLE carrito(
+    carrito_id INTEGER NOT NULL,
+	status_carrito VARCHAR(100),
+    date_carrito VARCHAR(100),
+    customer_id_fk INTEGER NOT NULL,
+	PRIMARY KEY (carrito_id),
+	FOREIGN KEY (customer_id_fk)
+	REFERENCES cliente(customer_id_fk)
+);
+
+
 -- // INSERTING DATA //
 
 INSERT INTO cliente (customer_id, cliente_nombre, cliente_direccion, cliente_telefono)
