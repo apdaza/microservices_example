@@ -22,6 +22,12 @@ def get_method(tipo):
         datos = jsonify([
                 CarritoSerialiser.serialise(dato)
                 for dato in data])
+    if tipo == 'cantidad':
+        data = controller.get_all(Cantidad)
+        datos = jsonify([
+                CantidadSerialiser.serialise(dato)
+                for dato in data])
+
     ## REPLICAR PARA ORDENES
     return datos, 200
 
@@ -34,6 +40,8 @@ def post_method(tipo):
         tipoModel = Cliente
     if (tipo == 'carrito'):
         tipoModel = Carrito
+    if (tipo == 'cantidad'):
+        tipoModel = Cantidad
     ## REPLICAR PARA CLIENTES, ORDENES
     controller.add_instance(tipoModel, datos)
     return json.dumps("Elemento Agregado "+str(datos)), 200

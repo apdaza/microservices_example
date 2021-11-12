@@ -1,13 +1,26 @@
-from flask import Flask, url_for, redirect, request
+from flask import Flask, url_for, redirect, request, Response
 from flask_sqlalchemy import SQLAlchemy
-# from models import Cliente
-# import db_crud
-import json
+import json, sys
+import requests
+from requests.adapters import HTTPAdapter
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///clientes.db'
-app.config['SECRET_KEY'] = "123"
-db = SQLAlchemy(app)
+requests.adapters.DEFAULT_RETRIES = 10
+BASE_URL = 'http://localhost:8080'
+ENDPOINT = 'apicrud/clientes'
+
+@app.route("/clientes", methods=['GET'])
+def principal():
+    response = requests.get(BASE_URL + "/" + ENDPOINT, proxies={"http": "http://apicrud:5000/apicrud"})
+    return Response(response.content, response.status_code)
+
+
+@app.route("/clientes/agregar", methods=['POST'])
+def agregar(): 
+    data = json.loads(request.data)
+    response = requests.post(BASE_URL + "/" + ENDPOINT, proxies={"http": "http://apicrud:5000/apicrud"}, data=json.dumps(data))
+    return Response(response.content, response.status_code)
+
 
 # @app.route("/clientes", methods=['GET'])
 # def principal():
@@ -59,5 +72,4 @@ db = SQLAlchemy(app)
 #     return json.dumps(p), 200
 
 if __name__ == "__main__":
-    db.create_all()
     app.run(host='0.0.0.0', debug=True)

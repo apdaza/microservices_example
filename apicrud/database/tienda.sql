@@ -29,6 +29,21 @@ CREATE TABLE carrito(
 );
 
 
+CREATE TABLE cantidad(
+
+	quantity_id INTEGER NOT NULL,
+	cantidad_seleccionada INTEGER NOT NULL,
+    carrito_id INTEGER NOT NULL,
+    producto_id INTEGER NOT NULL,
+	PRIMARY KEY (quantity_id),
+	FOREIGN KEY (carrito_id)
+	REFERENCES carrito(carrito_id),
+	FOREIGN KEY (producto_id)
+	REFERENCES producto(producto_id)
+);
+
+
+
 -- // INSERTING DATA //
 
 INSERT INTO cliente (customer_id, cliente_nombre, cliente_direccion, cliente_telefono)

@@ -59,7 +59,7 @@ class Cantidad(db.Model):
 
     def __init__(self, datos):
         self.cantidad_seleccionada = datos["cantidad_seleccionada"]
-        self.orden_id = datos["carrito_id"]
+        self.carrito_id = datos["carrito_id"]
         self.producto_id = datos["producto_id"]
 
 class Carrito(db.Model):
