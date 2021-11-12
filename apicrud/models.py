@@ -1,9 +1,17 @@
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
-db = SQLAlchemy()
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/tienda.db'
+app.config['SECRET_KEY'] = "123"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
+app.app_context().push()
+db = SQLAlchemy(app)
 
-## NO OLVIDAR COLOCAR LOS __INIT__
+
+# NO OLVIDAR COLOCAR LOS __INIT__
 
 class Producto(db.Model):
     __tablename__ = 'producto'
@@ -19,12 +27,18 @@ class Producto(db.Model):
         self.producto_valor = datos["producto_valor"]
         self.producto_descripcion = datos["producto_descripcion"]
 
+
 class Cliente(db.Model):
     __tablename__ = 'cliente'
     id  = db.Column("customer_id", db.Integer, primary_key=True)
     cliente_nombre = db.Column(db.String(100), nullable=False)
     cliente_direccion = db.Column(db.String(100), nullable=False)
     cliente_telefono = db.Column(db.Integer, nullable=False)
+
+    def __init__(self, datos):
+        self.cliente_nombre = datos["cliente_nombre"]
+        self.cliente_direccion = datos["cliente_direccion"]
+        self.cliente_telefono = datos["cliente_telefono"]
 
 class Orden(db.Model):
     __tablename__ = 'orden'

@@ -9,4 +9,14 @@ class ProductoSerialiser:
             "descripcion": d.producto_descripcion
         }
 
-## CREAR SERIALIZER PARA CADA CLASE
+class ClienteSerialiser:
+    @staticmethod
+    def serialise(d) -> dict:
+        return {
+            "id": d.id,
+            "nombre": d.cliente_nombre,
+            "direccion": d.cliente_direccion,
+            "telefono": d.cliente_telefono,
+        }
+
+## CREAR SERIALIZER PARA ORDEN
