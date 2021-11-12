@@ -67,10 +67,10 @@ class Carrito(db.Model):
     id  = db.Column("carrito_id", db.Integer, primary_key=True)
     status_carrito = db.Column(db.String(100))
     date_carrito = db.Column(db.String(100))
-    cliente_id_fk  = db.Column(db.Integer, db.ForeignKey('cliente.customer_id'), nullable=False)
+    customer_id_fk  = db.Column(db.Integer, db.ForeignKey('cliente.customer_id'), nullable=False)
     cliente = db.relationship('Cliente')
 
     def __init__(self, datos):
         self.status_carrito = datos["estado"]
         self.date_carrito = datos["fecha"]
-        self.cliente_id_fk = datos["customer_id_fk"]
+        self.customer_id_fk = datos["customer_id_fk"]

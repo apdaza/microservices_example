@@ -26,7 +26,7 @@ class CarritoSerialiser:
             "id": d.id,
             "status": d.status_carrito,
             "date": d.date_carrito,
-            "cliente_id": d.cliente_id_fk,
+            "cliente_id": d.customer_id_fk,
         }
 
 class CantidadSerialiser:

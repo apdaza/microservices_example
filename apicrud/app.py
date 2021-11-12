@@ -33,14 +33,14 @@ def get_method(tipo):
 
 @app.route("/apicrud/<tipo>", methods=['POST'])
 def post_method(tipo):
-    datos = json.loads(request.data) 
-    if (tipo == 'productos'):
+    datos = json.loads(request.data)
+    if tipo == 'productos':
         tipoModel = Producto
-    if (tipo == 'clientes'):
+    if tipo == 'clientes':
         tipoModel = Cliente
-    if (tipo == 'carrito'):
+    if tipo == 'carrito':
         tipoModel = Carrito
-    if (tipo == 'cantidad'):
+    if tipo == 'cantidad':
         tipoModel = Cantidad
     ## REPLICAR PARA CLIENTES, ORDENES
     controller.add_instance(tipoModel, datos)
