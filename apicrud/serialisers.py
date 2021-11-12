@@ -19,4 +19,15 @@ class ClienteSerialiser:
             "telefono": d.cliente_telefono,
         }
 
+class CarritoSerialiser:
+    @staticmethod
+    def serialise(d) -> dict:
+        return {
+            "id": d.id,
+            "status": d.status_carrito,
+            "date": d.date_carrito,
+            "cliente_id": d.cliente_id_fk,
+        }
+
+
 ## CREAR SERIALIZER PARA ORDEN

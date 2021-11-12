@@ -40,19 +40,37 @@ class Cliente(db.Model):
         self.cliente_direccion = datos["cliente_direccion"]
         self.cliente_telefono = datos["cliente_telefono"]
 
-class Orden(db.Model):
-    __tablename__ = 'orden'
-    id  = db.Column("order_id", db.Integer, primary_key=True)
-    fecha_orden = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    estado_orden = db.Column(db.String(50), nullable=False)
-    cliente_id = db.Column(db.Integer, db.ForeignKey('cliente.customer_id'), nullable=False)
-    cliente = db.relationship('Cliente')
+# class Orden(db.Model):
+#     __tablename__ = 'orden'
+#     id  = db.Column("order_id", db.Integer, primary_key=True)
+#     fecha_orden = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+#     estado_orden = db.Column(db.String(50), nullable=False)
+#     cliente_id = db.Column(db.Integer, db.ForeignKey('cliente.customer_id'), nullable=False)
+#     cliente = db.relationship('Cliente')
 
 class Cantidad(db.Model):
     __tablename__ = 'cantidad'
     id  = db.Column("quantity_id", db.Integer, primary_key=True)
     cantidad_seleccionada = db.Column(db.Integer, nullable=False)
-    orden_id = db.Column(db.Integer, db.ForeignKey('orden.order_id'), nullable=False)
+    carrito_id = db.Column(db.Integer, db.ForeignKey('carrito.carrito_id'), nullable=False)
     producto_id = db.Column(db.Integer, db.ForeignKey('producto.product_id'), nullable=False)
-    orden = db.relationship('Orden')
+    carrito = db.relationship('Carrito')
     producto = db.relationship('Producto')
+
+    def __init__(self, datos):
+        self.cantidad_seleccionada = datos["cantidad_seleccionada"]
+        self.orden_id = datos["carrito_id"]
+        self.producto_id = datos["producto_id"]
+
+class Carrito(db.Model):
+    __tablename__ = 'carrito'
+    id  = db.Column("carrito_id", db.Integer, primary_key=True)
+    status_carrito = db.Column(db.String(100))
+    date_carrito = db.Column(db.String(100))
+    cliente_id_fk  = db.Column(db.Integer, db.ForeignKey('cliente.customer_id'), nullable=False)
+    cliente = db.relationship('Cliente')
+
+    def __init__(self, datos):
+        self.status_carrito = datos["estado"]
+        self.date_carrito = datos["fecha"]
+        self.cliente_id_fk = datos["customer_id_fk"]
