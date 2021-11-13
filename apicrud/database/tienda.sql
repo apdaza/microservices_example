@@ -34,16 +34,12 @@ CREATE TABLE cantidad(
 	cantidad_seleccionada INTEGER NOT NULL,
     carrito_id INTEGER NOT NULL,
     producto_id INTEGER NOT NULL,
-    carrito_id_fk INTEGER NOT NULL,
-    producto_id_fk INTEGER NOT NULL,
 	PRIMARY KEY (quantity_id),
-	FOREIGN KEY (carrito_id_fk)
+	FOREIGN KEY (carrito_id)
 	REFERENCES carrito(carrito_id),
-	FOREIGN KEY (producto_id_fk)
+	FOREIGN KEY (producto_id)
 	REFERENCES producto(product_id)
 );
-
-
 
 -- // INSERTING DATA //
 
