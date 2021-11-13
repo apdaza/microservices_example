@@ -18,6 +18,24 @@ Repositorio para el orquestador (back-end) del proyecto de tienda de barrio "Tie
 - Sqlite 3
 - Docker
 
+### Microservices
+
+Esta aplicación trabaja una arquitectura de microservicios. 
+
+```
+.
+├── apicrud (crud api operations: GET, POST, PATCH, DELETE, GET BY ID)
+    ├── database
+        ├── tienda.db (database sqlite3)
+        └── tienda.sql (script)
+    ├── app.py
+    ├── requirements.txt
+    ├── controller.py (crud operations)
+    ├── models.py (classes-models)
+    ├── serialisers.py (helps data transformation)
+    └── Dockerfile
+```
+
 ### Ejecución del Proyecto / Instrucciones
 
 ```
