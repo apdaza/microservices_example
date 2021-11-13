@@ -51,7 +51,7 @@ Esta aplicación trabaja una arquitectura de microservicios y se considera, seg�
 ```
 
 #### API REST
-Mediante peticiones el "cliente" realiza el envío de información a través de JSON/XML por medio de un "endpoint" expuesto, el cual llega al API GATEWAY y es direccionado al microservicio solicitado. Según el método (GET, POST, PUT, DELETE, etc) HTTP se encarga de enviar la petición a la base de datos en la "api crud" y obtiene una respuesta. Se sigue el flujo como se evidencia en la imagen abajo:
+Mediante peticiones el "cliente" realiza el envío de información a través de JSON/XML por medio de un "endpoint" expuesto, esta solictud llega al API GATEWAY y es direccionado al microservicio solicitado. Según el método HTTP de request (GET, POST, PUT, DELETE, etc) el microservicio se encarga de enviar la petición a la base de datos en la "api crud" y obtiene una respuesta (response). Se sigue el flujo como se evidencia en la imagen abajo:
 
 ![image](https://user-images.githubusercontent.com/24207969/141644765-9b777961-f442-4e4d-9132-4d217aeb8449.png)
 
@@ -86,7 +86,18 @@ docker-compose up -d
 ```
 
 ### Pruebas
-Empleando postman es posible relizar el consumo de 
+Empleando postman (o similares) es posible realizar el consumo de los microservicios:
+
+```
+    Send data as JSON format if it is necessary
+    /microservice [GET ALL]
+    /microservice/agregar [POST]
+    /microservice/eliminar/:id [DELETE]
+    /microservice/actualizar/:id [PATCH]
+    /microservice/buscar/:id [GET BY ID]
+    
+    replace microservice with productos, clientes, etc.
+```
 
 ### Licencia
 
