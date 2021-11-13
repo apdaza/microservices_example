@@ -50,6 +50,10 @@ def eliminar(tipo, id):
         tipoModel = Producto
     if tipo == 'clientes':
         tipoModel = Cliente
+    if tipo == 'carrito':
+        tipoModel = Carrito
+    if tipo == 'cantidad':
+        tipoModel = Cantidad
     controller.delete_instance(tipoModel, id)
     return json.dumps("Elemento Eliminado "+str(id)), 200
 

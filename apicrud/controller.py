@@ -43,8 +43,8 @@ def edit_instance_CUSTOMER(model, id, datos):
 # PATCH CART
 def edit_instance_CART(model, id, datos):
     instance = model.query.filter_by(id=id).all()[0]
-    instance.status_carrito = datos["status_carrito"]
-    instance.date_carrito = datos["date_carrito"]
+    instance.status_carrito = datos["estado"]
+    instance.date_carrito = datos["fecha"]
     instance.customer_id_fk = datos["customer_id_fk"]
     commit_changes()
 

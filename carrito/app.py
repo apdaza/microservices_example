@@ -21,6 +21,16 @@ def agregar():
     response = requests.post(BASE_URL + "/" + ENDPOINT, proxies={"http": "http://apicrud:5000/apicrud"}, data=json.dumps(data))
     return Response(response.content, response.status_code)
 
+@app.route("/carrito/actualizar/<int:id>", methods=['PATCH'])
+def actualizar(id):
+    data = json.loads(request.data)
+    response = requests.patch(BASE_URL + "/" + ENDPOINT + "/" +str(id), proxies={"http": "http://apicrud:5000/apicrud"}, data=json.dumps(data))
+    return Response(response.content, response.status_code)
+
+@app.route("/carrito/eliminar/<int:id>", methods=['DELETE'])
+def eliminar(id):
+    response = requests.delete(BASE_URL + "/" + ENDPOINT + "/" +str(id), proxies={"http": "http://apicrud:5000/apicrud"})
+    return Response(response.content, response.status_code)
 
 # @app.route("/carrito", methods=['GET'])
 # def principalCarrito():
