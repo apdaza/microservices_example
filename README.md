@@ -13,9 +13,9 @@ Repositorio para el orquestador (back-end) del proyecto de tienda de barrio "Tie
 ## Especificaciones Técnicas
 ### Tecnologías Implementadas y Versiones
 
-- Flask, SQLAlquemy
-- Python
-- Sqlite
+- Flask 0.12, SQLAlquemy 2.5.1
+- Python 3.6
+- Sqlite 3
 - Docker
 
 ### Ejecución del Proyecto / Instrucciones
