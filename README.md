@@ -20,7 +20,9 @@ Repositorio para el orquestador (back-end) del proyecto de tienda de barrio "Tie
 
 ### Microservices
 
-Esta aplicación trabaja una arquitectura de microservicios. 
+Esta aplicación trabaja una arquitectura de microservicios y se considera, según su estructura, concepción y desarrollo, como una API REST.
+
+#### Estructura
 
 ```
 .
@@ -47,6 +49,11 @@ Esta aplicación trabaja una arquitectura de microservicios.
 ├── docker-compose.yml
 └── nginx.conf (NGINX as an API Gateway)
 ```
+
+#### API REST
+Mediante peticiones el "cliente" realiza el envío de información a través de JSON/XML por medio de un "endpoint" expuesto, el cual llega al API GATEWAY y es direccionado al microservicio solicitado. Según el método (GET, POST, PUT, DELETE, etc) HTTP se encarga de enviar la petición a la base de datos en la "api crud" y obtiene una respuesta. Se sigue el flujo como se evidencia en la imagen abajo:
+
+![image](https://user-images.githubusercontent.com/24207969/141644765-9b777961-f442-4e4d-9132-4d217aeb8449.png)
 
 #### NGINX as an API Gateway
 <strong><em>"As the leading high‑performance, lightweight reverse proxy and load balancer, NGINX has the advanced HTTP processing capabilities needed for handling API traffic. This makes NGINX the ideal platform with which to build an API gateway" *[NGINX as an API Gateway](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-1/)*</em></strong>
@@ -77,6 +84,9 @@ docker-compose run
 docker-compose up 
 docker-compose up -d
 ```
+
+### Pruebas
+Empleando postman es posible relizar el consumo de 
 
 ### Licencia
 
