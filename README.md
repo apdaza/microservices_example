@@ -34,7 +34,28 @@ Esta aplicación trabaja una arquitectura de microservicios.
     ├── models.py (classes-models)
     ├── serialisers.py (helps data transformation)
     └── Dockerfile
+├── cantidad (microservice)
+    ├── app.py (consume apicrud)
+    ├── requirements.txt
+    └── Dockerfile
+├── carrito (microservice)
+    └── ...
+├── clientes (microservice)
+    └── ...
+├── productos (microservice)
+    └── ...
+├── docker-compose.yml
+└── nginx.conf (NGINX as an API Gateway)
 ```
+
+#### NGINX as an API Gateway
+<strong><em>As the leading high‑performance, lightweight reverse proxy and load balancer, NGINX has the advanced HTTP processing capabilities needed for handling API traffic. This makes NGINX the ideal platform with which to build an API gateway *[NGINX as an API Gateway](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-1/)*</em></strong>
+
+Este proyecto emplea NGINX como API GATEWAY para manejar el tráfico. La estructura referencia es tomada de *[NGINX as an API Gateway](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-1/)* y es como la imagen abajo:
+
+![image](https://user-images.githubusercontent.com/24207969/141644322-bb0159e1-0f2f-424e-a38e-f3565bc675e5.png)
+
+Donde los *services* hacen referencia a nuestros microservicios antes mencionados en la estructura (cliente, productos, etc)
 
 ### Ejecución del Proyecto / Instrucciones
 
