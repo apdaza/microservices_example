@@ -74,15 +74,39 @@ def actualizar(tipo, id):
 @app.route("/apicrud/<tipo>/<int:id>", methods=['GET'])
 def buscar(tipo, id):
     if tipo == 'productos':
-        tipoModel = Producto
+        data = controller.get_by_id(Producto, id)
+        p = {
+            "id": data.id,
+            "nombre": data.producto_nombre,
+            "cantidad": data.producto_cantidad,
+            "valor": data.producto_valor,
+            "descripcion": data.producto_descripcion
+        }
     if tipo == 'clientes':
-        tipoModel = Cliente
+        data = controller.get_by_id(Cliente, id)
+        p = {
+            "id": data.id,
+            "nombre": data.cliente_nombre,
+            "direccion": data.cliente_direccion,
+            "telefono": data.cliente_telefono,
+        }
     if tipo == 'carrito':
-        tipoModel = Carrito
+        data = controller.get_by_id(Carrito, id)
+        p = {
+            "id": data.id,
+            "estado": data.estado,
+            "fecha": data.fecha,
+            "cliente": data.customer_id_fk,
+        }
     if tipo == 'cantidad':
-        tipoModel = Cantidad
-    data = controller.get_by_id(tipoModel, id)
-    return json.dumps("Elemento Editado "+str(data)), 200
+        data = controller.get_by_id(Cantidad, id)
+        p = {
+            "id": data.id,
+            "cantidad": data.cantidad_seleccionada,
+            "carrito_id": data.carrito_id,
+            "producto_id": data.producto_id,
+        }
+    return "Elemento encontrado: "+json.dumps(p), 200
 
 if __name__ == "__main__":
     db.init_app(app)

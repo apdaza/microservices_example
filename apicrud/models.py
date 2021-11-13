@@ -1,3 +1,4 @@
+import json
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
@@ -38,14 +39,6 @@ class Cliente(db.Model):
         self.cliente_nombre = datos["cliente_nombre"]
         self.cliente_direccion = datos["cliente_direccion"]
         self.cliente_telefono = datos["cliente_telefono"]
-
-# class Orden(db.Model):
-#     __tablename__ = 'orden'
-#     id  = db.Column("order_id", db.Integer, primary_key=True)
-#     fecha_orden = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-#     estado_orden = db.Column(db.String(50), nullable=False)
-#     cliente_id = db.Column(db.Integer, db.ForeignKey('cliente.customer_id'), nullable=False)
-#     cliente = db.relationship('Cliente')
 
 class Cantidad(db.Model):
     __tablename__ = 'cantidad'

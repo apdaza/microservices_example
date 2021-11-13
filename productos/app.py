@@ -31,19 +31,5 @@ def actualizar(id):
     response = requests.patch(BASE_URL + "/" + ENDPOINT + "/" +str(id), proxies={"http": "http://apicrud:5000/apicrud"}, data=json.dumps(data))
     return Response(response.content, response.status_code)
 
-## AJUSTAR
-# @app.route("/productos/buscar/<int:id>", methods=['GET'])
-# def buscar(id):
-#     data = db_crud.get_by_id(Producto, id)
-#     p = {
-#         "id": data.id,
-#         "nombre": data.producto_nombre,
-#         "cantidad": data.producto_cantidad,
-#         "valor": data.producto_valor,
-#         "descripcion": data.producto_descripcion
-#     }
-
-#     return json.dumps(p), 200
-
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
