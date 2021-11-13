@@ -94,8 +94,8 @@ def buscar(tipo, id):
         data = controller.get_by_id(Carrito, id)
         p = {
             "id": data.id,
-            "estado": data.estado,
-            "fecha": data.fecha,
+            "estado": data.status_carrito,
+            "fecha": data.date_carrito,
             "cliente": data.customer_id_fk,
         }
     if tipo == 'cantidad':
