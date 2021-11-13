@@ -49,7 +49,7 @@ Esta aplicación trabaja una arquitectura de microservicios.
 ```
 
 #### NGINX as an API Gateway
-<strong><em>As the leading high‑performance, lightweight reverse proxy and load balancer, NGINX has the advanced HTTP processing capabilities needed for handling API traffic. This makes NGINX the ideal platform with which to build an API gateway *[NGINX as an API Gateway](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-1/)*</em></strong>
+<strong><em>"As the leading high‑performance, lightweight reverse proxy and load balancer, NGINX has the advanced HTTP processing capabilities needed for handling API traffic. This makes NGINX the ideal platform with which to build an API gateway" *[NGINX as an API Gateway](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-1/)*</em></strong>
 
 Este proyecto emplea NGINX como API GATEWAY para manejar el tráfico. La estructura referencia es tomada de *[NGINX as an API Gateway](https://www.nginx.com/blog/deploying-nginx-plus-as-an-api-gateway-part-1/)* y es como la imagen abajo:
 
