@@ -22,10 +22,10 @@ Repositorio para el orquestador (back-end) del proyecto de tienda de barrio "Tie
 
 ```
 # 1. Obtener el repositorio de git
-git clone 
+git clone https://github.com/Ataches/TiendaLa40_Orquestador.git
 
 # 2. Moverse a la carpeta del repositorio, si aplica
-cd 
+cd TiendaLa40_Orquestador
 
 # 3. Moverse a la rama **master**
 git pull origin master && git checkout master
