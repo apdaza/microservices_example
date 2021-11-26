@@ -102,7 +102,7 @@ Empleando postman (o similares) es posible realizar el consumo de los microservi
 
 ## Diagrama de componentes
 
-![](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/Ataches/TiendaLa40_Orquestador/main/Components_diagram.puml)
+![](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/Ataches/TiendaLa40_Orquestador/master/Components_diagram.puml)
 
 ### Licencia
 
