@@ -99,6 +99,11 @@ Empleando postman (o similares) es posible realizar el consumo de los microservi
     replace microservice with productos, clientes, etc.
 ```
 
+
+## Diagrama de componentes
+
+![](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/Ataches/TiendaLa40_Orquestador/main/Components_diagram.puml)
+
 ### Licencia
 
 This file is part of TiendaLa40_Orquestador.

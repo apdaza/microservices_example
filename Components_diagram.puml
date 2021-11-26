@@ -1,0 +1,46 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+
+!include <office/Servers/database_server>
+!include <office/Servers/application_server>
+!include <office/Concepts/service_application>
+!include <office/Concepts/firewall>
+!include DEVICONS/webplatform.puml
+!include DEVICONS/python.puml
+
+title Components Diagram for TiendaLa40
+
+AddContainerTag("webplatform", $sprite="webplatform", $legendText="webplatform container")
+AddContainerTag("python", $sprite="python")
+AddContainerTag("db", $sprite="database_server", $legendText="database container")
+
+
+System_Boundary(api_gateway, "Application Gateway"){
+    Container(web_platform, "Web Platform", "Flutter", "Allow users to view data", $tags="webplatform")
+    Container(Application_BFF, "Application BFF", "Python","Allow users to view data", $tags="python")
+
+    System_Boundary(services, "Services"){
+        Container(product, "Product", "Flask", "Products service",  $tags="python")
+        Container(register, "Order ", "Flask", "Orders service",  $tags="python")
+        Container(cart, "Cart ", "Flask", "Cart service",  $tags="python")
+        Container(customer, "Customer ", "Flask", "Customers service",  $tags="python")
+    }
+
+    ContainerDb(rel_db, "Relational Database", "MySQL", "Stores users and application data",  $tags="db")
+    Container(API_CRUD, "API CRUD", "Flask",  $tags="python")
+}
+
+Rel(web_platform, Application_BFF, "Uses", "Nginx")
+Rel(Application_BFF, register, "Uses", "Nginx")
+Rel(Application_BFF, cart, "Uses", "Nginx")
+Rel(Application_BFF, customer, "Uses", "Nginx")
+Rel(Application_BFF, product, "Uses", "Nginx")
+Rel(product, API_CRUD, "Uses", "Nginx")
+Rel(register, API_CRUD, "Uses", "Nginx")
+Rel(cart, API_CRUD, "Uses", "Nginx")
+Rel(customer, API_CRUD, "Uses", "Nginx")
+Rel(API_CRUD, rel_db, "Uses", "Nginx")
+
+@enduml
