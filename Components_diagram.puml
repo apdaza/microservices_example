@@ -16,9 +16,9 @@ AddContainerTag("webplatform", $sprite="webplatform", $legendText="webplatform c
 AddContainerTag("python", $sprite="python")
 AddContainerTag("db", $sprite="database_server", $legendText="database container")
 
+Container(web_platform, "Web Platform", "Flutter", "Allow users to view data", $tags="webplatform")
 
 System_Boundary(api_gateway, "Application Gateway"){
-    Container(web_platform, "Web Platform", "Flutter", "Allow users to view data", $tags="webplatform")
     Container(Application_BFF, "Application BFF", "Python","Allow users to view data", $tags="python")
 
     System_Boundary(services, "Services"){
