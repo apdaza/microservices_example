@@ -13,7 +13,6 @@ def principal():
     response = requests.get(BASE_URL + "/" + ENDPOINT, proxies={"http": "http://apicrud:5000/apicrud"})
     return Response(response.content, response.status_code)
 
-
 @app.route("/clientes/agregar", methods=['POST'])
 def agregar(): 
     data = json.loads(request.data)
