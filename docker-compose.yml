@@ -10,7 +10,6 @@ services:
             - carrito
             - productos
             - cantidad
-            - resta
             - apicrud
         ports:
             - "8080:80"
@@ -21,9 +20,6 @@ services:
     productos:
         build: ./productos
 
-    resta:
-        build: ./resta
-    
     carrito:
         build: ./carrito
     
