@@ -100,10 +100,13 @@ Empleando postman (o similares) es posible realizar el consumo de los microservi
 ```
 
 
-
 ## Arquitectura de microservicios
 
 ![Image text](https://github.com/IvanDanielVillegas/EEG_Drone_Control/blob/master/Arquitectura-Microservicios-Tienda.jpg)
+
+## Diagrama de componentes
+
+![Components_Diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/Ataches/TiendaLa40_Orquestador/master/Components_diagram.puml)
 
 
 ### Licencia
