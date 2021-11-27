@@ -32,7 +32,7 @@ System_Boundary(api_gateway, "Application Gateway"){
     Container(API_CRUD, "API CRUD", "Flask",  $tags="python")
 }
 
-Rel(web_platform, Application_BFF, "Uses", "Nginx")
+Rel(web_platform, Application_BFF, "Uses", "HTTP")
 Rel(Application_BFF, register, "Uses", "Nginx")
 Rel(Application_BFF, cart, "Uses", "Nginx")
 Rel(Application_BFF, customer, "Uses", "Nginx")
