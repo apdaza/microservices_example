@@ -3,10 +3,10 @@ class ProductoSerialiser:
     def serialise(d) -> dict:
         return {
             "id": d.id,
-            "nombre": d.producto_nombre,
-            "cantidad": d.producto_cantidad,
-            "valor": d.producto_valor,
-            "descripcion": d.producto_descripcion
+            "producto_nombre": d.producto_nombre,
+            "producto_cantidad": d.producto_cantidad,
+            "producto_valor": d.producto_valor,
+            "producto_descripcion": d.producto_descripcion
         }
 
 class ClienteSerialiser:

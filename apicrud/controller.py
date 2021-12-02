@@ -1,4 +1,5 @@
 from models import db
+import json, sys
 
 
 # GET
@@ -61,6 +62,7 @@ def edit_instance_QUANTITY(model, id, datos):
 # GET
 def get_by_id(model, id):
     instance = model.query.filter_by(id=id).first()
+    print("API CRUUUUUUUUUUUUUUUUUUUUUUUUUUD", file=sys.stderr)
     return instance
 
 

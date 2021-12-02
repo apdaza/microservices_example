@@ -11,6 +11,7 @@ services:
             - productos
             - cantidad
             - apicrud
+            - apimid
         ports:
             - "8080:80"
         
@@ -28,3 +29,6 @@ services:
 
     apicrud:
         build: ./apicrud
+    
+    apimid:
+        build: ./apimid

@@ -1,7 +1,7 @@
 from flask import Flask, url_for, redirect, request, jsonify
 from models import *
 import controller
-import json
+import json, sys
 from serialisers import *
 
 @app.route("/apicrud/<tipo>", methods=['GET'])
@@ -74,6 +74,7 @@ def actualizar(tipo, id):
 @app.route("/apicrud/<tipo>/<int:id>", methods=['GET'])
 def buscar(tipo, id):
     if tipo == 'productos':
+        print("API CRUUUUUUUUUUUUUUUUUUUUUUUUUUD 1111111111111111111111111", file=sys.stderr)
         data = controller.get_by_id(Producto, id)
         p = {
             "id": data.id,
@@ -82,6 +83,7 @@ def buscar(tipo, id):
             "valor": data.producto_valor,
             "descripcion": data.producto_descripcion
         }
+        print("API CRUUUUUUUUUUUUUUUUUUUUUUUUUUD FINAL", file=sys.stderr)
     if tipo == 'clientes':
         data = controller.get_by_id(Cliente, id)
         p = {
@@ -106,7 +108,7 @@ def buscar(tipo, id):
             "carrito_id": data.carrito_id,
             "producto_id": data.producto_id,
         }
-    return "Elemento encontrado: "+json.dumps(p), 200
+    return json.dumps(p), 200
 
 if __name__ == "__main__":
     db.init_app(app)

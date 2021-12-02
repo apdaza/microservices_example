@@ -31,5 +31,10 @@ def actualizar(id):
     response = requests.patch(BASE_URL + "/" + ENDPOINT + "/" +str(id), proxies={"http": "http://apicrud:5000/apicrud"}, data=json.dumps(data))
     return Response(response.content, response.status_code)
 
+@app.route("/productos/<int:id>", methods=['GET'])
+def consultarId(id):
+    response = requests.get(BASE_URL + "/" + ENDPOINT + "/" +str(id), proxies={"http": "http://apicrud:5000/apicrud"})
+    return Response(response.content, response.status_code)
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
