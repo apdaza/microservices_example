@@ -12,7 +12,7 @@ services:
             - division
         ports:
             - "8080:80"
-        
+ 
     suma:
         build: ./suma
 
@@ -24,3 +24,4 @@ services:
 
     division:
         build: ./division
+    
