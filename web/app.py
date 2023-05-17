@@ -15,11 +15,11 @@ def calculate():
     operation = request.form['operation']
 
     if operation == 'sum':
-        url = 'http://suma:5000/suma'
+        url = 'http://addition:5000/addition'
     elif operation == 'subtract':
-        url = 'http://resta:5000/resta'
+        url = 'http://subtraction:5000/subtraction'
     elif operation == 'multiply':
-        url = 'http://multiplicacion:5000/multiplicacion'
+        url = 'http://multiplication:5000/multiplication'
     elif operation == 'divide':
         url = 'http://division:5000/division'
 

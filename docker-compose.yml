@@ -6,22 +6,22 @@ services:
             - ./nginx.conf:/etc/nginx/nginx.conf:ro
         command: [nginx-debug, '-g', 'daemon off;']
         links:
-            - suma
-            - resta
-            - multiplicacion
+            - addition
+            - subtraction
+            - multiplication
             - division
             - web
         ports:
             - "8080:80"
  
-    suma:
-        build: ./suma
+    addition:
+        build: ./addition
 
-    resta:
-        build: ./resta
+    subtraction:
+        build: ./subtraction
 
-    multiplicacion:
-        build: ./multiplicacion
+    multiplication:
+        build: ./multiplication
 
     division:
         build: ./division

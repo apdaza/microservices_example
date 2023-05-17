@@ -2,12 +2,12 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-@app.route("/suma", methods=['POST'])
-def suma():
+@app.route("/subtration", methods=['POST'])
+def resta():
     data = request.get_json()
     num1 = data['num1']
     num2 = data['num2']
-    result = num1 + num2
+    result = num1 - num2
     return {'result': result}
 
 if __name__ == "__main__":
