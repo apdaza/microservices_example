@@ -1,0 +1,33 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Microservices Web Client</title>
+</head>
+<body>
+  <h1>Microservices Web Client</h1>
+  
+  <form action="{{ url_for('calculate') }}" method="POST">
+    <label for="num1">Number 1:</label>
+    <input type="number" name="num1" id="num1" required><br>
+
+    <label for="num2">Number 2:</label>
+    <input type="number" name="num2" id="num2" required><br>
+
+    <label for="operation">Operation:</label>
+    <select name="operation" id="operation" required>
+      <option value="sum">Sum</option>
+      <option value="subtract">Subtract</option>
+      <option value="multiply">Multiply</option>
+      <option value="divide">Divide</option>
+    </select><br>
+
+    <button type="submit">Calculate</button>
+  </form>
+
+  {% if result %}
+    <h2>Result:</h2>
+    <p>{{ result }}</p>
+  {% endif %}
+</body>
+</html>

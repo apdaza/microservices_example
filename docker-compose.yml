@@ -10,6 +10,7 @@ services:
             - resta
             - multiplicacion
             - division
+            - web
         ports:
             - "8080:80"
  
@@ -24,4 +25,7 @@ services:
 
     division:
         build: ./division
+
+    web:
+        build: ./web
     
