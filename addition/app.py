@@ -3,7 +3,7 @@ from flask import Flask, request
 app = Flask(__name__)
 
 @app.route("/addition", methods=['POST'])
-def suma():
+def addition():
     data = request.get_json()
     num1 = data['num1']
     num2 = data['num2']

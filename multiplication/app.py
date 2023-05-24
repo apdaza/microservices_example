@@ -3,7 +3,7 @@ from flask import Flask, request
 app = Flask(__name__)
 
 @app.route("/multiplication", methods=['POST'])
-def multiplicacion():
+def multiplication():
     data = request.get_json()
     num1 = data['num1']
     num2 = data['num2']
